@@ -15,7 +15,7 @@
     lineinfile:
       path: /usr/local/ncpa/etc/ncpa.cfg
       regexp: '^community_string'
-      line: 'community_string = Str0ngT0k3n1'
+      line: 'community_string = mytoken2020'
     notify: RESTART_NCPA
   handlers: 
   - name: RESTART_NCPA
