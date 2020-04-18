@@ -1,5 +1,6 @@
 ---
 - name: Playbook1
+  host: localhost
   task: 
   - name: Task1
     command: "echo Hello from Playbook1"
