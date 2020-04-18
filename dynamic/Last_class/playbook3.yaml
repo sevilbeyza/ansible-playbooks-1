@@ -1,0 +1,5 @@
+---
+- name: Playbook3
+  task: 
+  - name: Task3
+    command: "echo Hello from Playbook1"
