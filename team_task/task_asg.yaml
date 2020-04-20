@@ -1,5 +1,6 @@
 ---
 - name: Playbook name
+  hosts: localhost
   tasks: 
-- import_playbook: asg2.yaml
-- import_playbook: test.yaml
+- import_playbook: deneme.yaml
+- import_playbook: wordpress.yaml
