@@ -28,11 +28,8 @@
       vpc_id: vpc-0fc840bb81dca6ea8
       state: present
 
-  - local_action:
-      module: ec2_elb_lb
-      name: task_elb
-      state: present
-      scheme: internet-facing
+  - elb_application_lb:
+      name: myelb
       security_groups: launch-wizard-1
       region: eu-west-2
       subnets:
@@ -40,23 +37,17 @@
         - subnet-08a47152982b03821
         - subnet-00bcbb7fdfec17773
       listeners:
-        - protocol: http # options are http, https, ssl, tcp
-          load_balancer_port: 80
-          instance_port: 80
-          proxy_protocol: True
-      health_check:
-        ping_protocol: http
-        ping_port: 80
-        ping_path: "/status"
-        response_timeout: 3
-        interval: 5
-        unhealthy_threshold: 2
-        healthy_threshold: 2
-      targetgroupname: mytargetgroup
+        - Protocol: HTTP # Required. The protocol for connections from clients to the load balancer (HTTP or HTTPS) (case-sensitive).
+          Port: 80
+          DefaultActions:
+            - Type: forward # Required.
+              TargetGroupName: mytargetgroup
+      state: present
+    
 
   - ec2_asg:
       name: myasg
-      load_balancers: task_elb
+      load_balancers: myelb
       launch_config_name: launch_asg
       availability_zones: [ 'eu-west-2a', 'eu-west-2b', 'eu-west-2c' ]
       min_size: 3
