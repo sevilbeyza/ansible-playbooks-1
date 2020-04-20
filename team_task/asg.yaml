@@ -10,6 +10,5 @@
     min_size: 5
     max_size: 5
     desired_capacity: 5
-    region: eu-east-2
-    vpc_zone_identifier: [ 'subnet-0b4b71fdd6338c402', 'subnet-08a47152982b03821' ]
-    
+    region: eu-west-2
+    vpc_zone_identifier: [ 'subnet-0b4b71fdd6338c402', 'subnet-08a47152982b03821' ] 

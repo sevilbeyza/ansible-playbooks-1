@@ -1,48 +1,67 @@
 ---
 - name: asg
-  hosts: localhost 
-  become: true
-  become_method: sudo
+  hosts: localhost
   ignore_errors: true
   tasks:
   - name: create launch config
-  ec2_lc:
-    name: launch_asg
-    image_id: ami-01a6e31ac994bbc09
-    key_name: ansible
-    security_groups: default
-    instance_type: t2.micro
-    volumes:
-    - device_name: /dev/xvda
-      volume_size: 100
-      volume_type: io1
-      iops: 3000
-      delete_on_termination: true
-      encrypted: no
+    ec2_lc:
+      name: launch_asg
+      image_id: ami-01a6e31ac994bbc09
+      key_name: ansible
+      security_groups: launch-wizard-1
+      instance_type: t2.micro
+      region: eu-west-2 
+      volumes:
+      - device_name: /dev/xvda
+        volume_size: 100
+        volume_type: io1
+        iops: 3000
+        delete_on_termination: true
+        encrypted: no
+    register: lc
+  
+  - elb_target_group:
+      name: mytargetgroup
+      region: eu-west-2
+      protocol: http
+      port: 80
+      vpc_id: vpc-0fc840bb81dca6ea8
+      state: present
 
   - local_action:
       module: ec2_elb_lb
       name: task_elb
       state: present
+      scheme: internet-facing
+      security_groups: launch-wizard-1
       region: eu-west-2
-      zones:
-        - eu-west-2a 
-        - eu-west-2b
+      subnets:
+        - subnet-0b4b71fdd6338c402
+        - subnet-08a47152982b03821
+        - subnet-00bcbb7fdfec17773
       listeners:
-        - protocol: http
+        - protocol: http # options are http, https, ssl, tcp
           load_balancer_port: 80
           instance_port: 80
-      
+          proxy_protocol: True
+      health_check:
+        ping_protocol: http
+        ping_port: 80
+        ping_path: "/status"
+        response_timeout: 3
+        interval: 5
+        unhealthy_threshold: 2
+        healthy_threshold: 2
+      targetgroupname: mytargetgroup
+
   - ec2_asg:
       name: myasg
       load_balancers: task_elb
       launch_config_name: launch_asg
-      availability_zones: [ 'eu-west-2a', 'eu-west-2b', 'eu-west-2a' ]
-      health_check_period: 60
-      health_check_type: ELB
-      replace_all_instances: yes
-      min_size: 5
-      max_size: 5
-      desired_capacity: 5
+      availability_zones: [ 'eu-west-2a', 'eu-west-2b', 'eu-west-2c' ]
+      min_size: 3
+      max_size: 48
+      desired_capacity: 3
       region: eu-west-2
-      vpc_zone_identifier: [ 'subnet-0b4b71fdd6338c402', 'subnet-08a47152982b03821' ]
+  
+  
