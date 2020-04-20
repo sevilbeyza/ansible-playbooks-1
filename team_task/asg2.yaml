@@ -1,0 +1,15 @@
+---
+- ec2_asg:
+    name: myasg
+    load_balancers: task_elb
+    launch_config_name: launch_asg
+    availability_zones: [ 'eu-west-2a', 'eu-west-2b', 'eu-west-2a' ]
+    health_check_period: 60
+    health_check_type: ELB
+    replace_all_instances: yes
+    min_size: 5
+    max_size: 5
+    desired_capacity: 5
+    region: eu-east-2
+    vpc_zone_identifier: [ 'subnet-0b4b71fdd6338c402', 'subnet-08a47152982b03821' ]
+    

@@ -1,0 +1,16 @@
+---
+- name: ASG1
+  ec2_lc:
+    name: myfirstasg
+    image_id: "{{image_id}}"
+    key_name: "{{key_name}}"
+    security_groups: "{{security_groups}}"
+    instance_type: "{{instance_type}}"
+    volumes:
+    - device_name: /dev/xvda
+      volume_size: 100
+      volume_type: io1
+      iops: 3000
+      delete_on_termination: true
+      encrypted: no
+    

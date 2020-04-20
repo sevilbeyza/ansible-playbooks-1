@@ -1,0 +1,15 @@
+---
+- name: create launch config
+  ec2_lc:
+    name: launch_asg
+    image_id: ami-01a6e31ac994bbc09
+    key_name: default
+    security_groups: default
+    instance_type: t2.micro
+    volumes:
+    - device_name: /dev/xvda
+      volume_size: 100
+      volume_type: io1
+      iops: 3000
+      delete_on_termination: true
+      encrypted: no

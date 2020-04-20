@@ -1,0 +1,17 @@
+---
+- local_action:
+    module: ec2_elb_lb
+    name: task_elb
+    state: present
+    region: eu-west-2
+    zones:
+      - eu-west-2a 
+      - eu-west-2b
+    listeners:
+      - protocol: http
+        load_balancer_port: 80
+        instance_port: 80
+    stickiness:
+      type: loadbalancer
+      enabled: yes
+      expiration: 300

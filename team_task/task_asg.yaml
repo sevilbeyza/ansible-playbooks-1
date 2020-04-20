@@ -1,0 +1,5 @@
+---
+- name: Playbook name
+  tasks: 
+- import_playbook: asg2.yaml
+- import_playbook: test.yaml
