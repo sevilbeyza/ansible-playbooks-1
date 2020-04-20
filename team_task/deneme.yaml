@@ -43,14 +43,41 @@
             - Type: forward # Required.
               TargetGroupName: mytargetgroup
       state: present
-    
+
+  - name: tuba goes to sleep >>> after 5 hrs
+    wait_for:
+      timeout: 60
 
   - ec2_asg:
       name: myasg
-      load_balancers: myelb
       launch_config_name: launch_asg
-      availability_zones: [ 'eu-west-2a', 'eu-west-2b', 'eu-west-2c' ]
+      health_check_period: 60
+      health_check_type: ELB
+      replace_all_instances: yes
       min_size: 3
       max_size: 48
       desired_capacity: 3
       region: eu-west-2
+      state: present
+  # - ec2_asg:
+  #     name: myasg
+  #     load_balancers: myelb
+  #     launch_config_name: launch_asg
+  #     availability_zones: [ 'eu-west-2a', 'eu-west-2b', 'eu-west-2c' ]
+  #     min_size: 3
+  #     max_size: 48
+  #     desired_capacity: 3
+  #     region: eu-west-2
+  #     vpc_zone_identifier: [ 'subnet-0b4b71fdd6338c402', 'subnet-08a47152982b03821', 'subnet-00bcbb7fdfec17773' ]
+  # - ec2_asg:
+  #   name: myasg
+  #   launch_config_name: my_new_lc
+  #   health_check_period: 60
+  #   health_check_type: ELB
+  #   replace_instances:
+  #   - i-b345231
+  #   - i-24c2931
+  #   min_size: 5
+  #   max_size: 5
+  #   desired_capacity: 5
+  #   region: eu-west-2
