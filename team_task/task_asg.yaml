@@ -3,4 +3,4 @@
   hosts: localhost
   tasks: 
 - import_playbook: deneme.yaml
-- import_playbook: wordpress.yaml
+- import_playbook: wp.yaml

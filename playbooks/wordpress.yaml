@@ -1,20 +1,12 @@
 ---
-- name: Install wordpress on CentOS 7 
-  # gather_facts: no 
+- name: Install wordpress on CentOS 7
+  # gather_facts: no
   hosts: all
   become: true
   become_method: sudo
-  user: centos  
+  user: centos
+  ignore_errors: true  
   tasks:
-    - name: add users
-      user: 
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - bob
-        - ben
-        - lisa
-        - katty 
     - name: Install remi repo.
       yum:
         name: http://rpms.famillecollet.com/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm
