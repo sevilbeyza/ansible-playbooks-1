@@ -9,13 +9,13 @@
       image_id: "{{image_d}}"
       key_name: "{{key_name}}"
       security_groups: "{{security_groups}}"
-      instance_type: t2.micro
+      instance_type: "{{instance_type}}"
       region: "{{region}}" 
       volumes:
-      - device_name: /dev/xvda
-        volume_size: 100
-        volume_type: io1
-        iops: 3000
+      - device_name: "{{device_name}}"
+        volume_size: "{{volume_sice}}"
+        volume_type: "{{volume_type}}"
+        iops: "{{iops}}"
         delete_on_termination: true
         encrypted: no
     register: lc
@@ -44,13 +44,10 @@
               TargetGroupName: mytargetgroup
       state: present
 
-  # - name: tuba goes to sleep >>> after 5 hrs
-  #   wait_for:
-  #     timeout: 60
   - ec2_asg:
       name: myasg
       launch_config_name: launch_asg
-      health_check_period: 60
+      health_check_period: "{{health_check_period}}"
       health_check_type: ELB
       replace_all_instances: yes
       min_size: "{{min_size}}"

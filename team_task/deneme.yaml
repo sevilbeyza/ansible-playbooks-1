@@ -44,9 +44,6 @@
               TargetGroupName: mytargetgroup
       state: present
 
-  # - name: tuba goes to sleep >>> after 5 hrs
-  #   wait_for:
-  #     timeout: 60
   - ec2_asg:
       name: myasg
       launch_config_name: launch_asg
