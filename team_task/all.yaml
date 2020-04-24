@@ -1,7 +1,34 @@
 ---
-- name: All TEAM2 ASG Playbooks
+- name: All TEAM1 VPC AND TEAM2 ASG Playbooks
   hosts: localhost
   tasks: 
+  
+  
+  # TEAM 1  
+  
+- name: Create Vpc
+  include: vpc.yaml
+
+- name: Create Pub Subnets
+  include: public-sub.yaml
+
+- name: Create IGW
+  include: internet-gateway.yaml
+
+- name: Create Priv Subnets
+  include: private-sub.yaml
+
+- name: Create  Nat Gateway
+  include: nat-gateway.yaml
+
+- name: Create RT
+  include: route-table-priv.yaml
+
+- name: Create RT
+  include: route-table-pub.yaml  
+  
+  
+  # TEAM 2
   
 - name: Create Security Group
   include: security_group.yaml
