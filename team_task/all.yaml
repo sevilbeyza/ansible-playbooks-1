@@ -9,24 +9,23 @@
 - name: Create Vpc
   include: vpc.yaml
 
-- name: Create Pub Subnets
-  include: public-sub.yaml
+- name: Create Public Subnets
+  include: public_subnet.yaml
 
 - name: Create IGW
-  include: internet-gateway.yaml
+  include: internet_gateway.yaml
 
-- name: Create Priv Subnets
-  include: private-sub.yaml
+- name: Create Private Subnets
+  include: private_subnet.yaml
 
 - name: Create  Nat Gateway
-  include: nat-gateway.yaml
+  include: nat_gateway.yaml
 
 - name: Create RT
-  include: route-table-priv.yaml
+  include: route_table_private.yaml
 
 - name: Create RT
-  include: route-table-pub.yaml  
-  
+  include: route_table_public.yaml  
   
   # TEAM 2
   
@@ -34,13 +33,13 @@
   include: security_group.yaml
 
 - name: Create Launch Config
-  include: ec2_lc.yaml
+  include: ec2_launch_configuration.yaml
   
 - name: Create Target Group
   include: target_group.yaml
 
 - name: Create Application Load Balancer
-  include: application_lb.yaml
+  include: application_load_balancer.yaml
 
 - name: Create Auto Scaling Group
-  include: asg.yaml
+  include: auto_scaling_group.yaml

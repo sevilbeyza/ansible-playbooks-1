@@ -4,7 +4,7 @@
   gather_facts: no
   ignore_errors: yes
   vars_files:
-    - region.yaml
+    - vars_file.yaml
   tasks:
     - name: Collect VPC info
       ec2_vpc_net_facts:

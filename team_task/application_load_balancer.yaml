@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: yes
   vars_files:
-    - vars.yaml
+    - vars_file.yaml
   tasks:
     - elb_application_lb:
         name: team2-lb
