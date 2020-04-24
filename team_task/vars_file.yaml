@@ -13,8 +13,6 @@ Private_cidr1:            "10.10.1.0/24"
 Private_cidr2:            "10.10.2.0/24"
 Private_cidr3:            "10.10.3.0/24"
 
-
-
 # Security Group
 name:                        "team2sg"
 
@@ -24,19 +22,13 @@ image_id:                   "ami-0f8a5a45f8bf248f4"
 key_name:                   "ansible"
 security_groups:            "team2sg"
 instance_type:              "t2.micro"
-# device_name:                "/dev/xvda"
-# volume_size:                "100"
-# volume_type:                "io1"
-# iops:                       "3000"
 
 # Target Group
 # name:                       "team2targetgroup"
 
 # Application Load Balancer
 # name:                       "team2-lb"
-# Protocol:                   "HTTP"
-# Port:                       "80"
-# Type:                       "forward"
+
 TargetGroupName:            "team2targetgroup"
 
 # Auto Scaling Group
