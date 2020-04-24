@@ -17,8 +17,6 @@ Private_cidr3:            "10.10.3.0/24"
 
 # Security Group
 name:                        "team2sg"
-region:                      "us-west-2"
-vpc_id:                      "vpc_id"
 
 # Launch Configuraton
 # name:                     "team2-lc"
@@ -26,7 +24,6 @@ image_id:                   "ami-0e8444967cca91ba6"
 key_name:                   "ansible"
 security_groups:            "team2sg"
 instance_type:              "t2.micro"
-region:                     "us-west-2"
 # device_name:                "/dev/xvda"
 # volume_size:                "100"
 # volume_type:                "io1"
@@ -37,9 +34,6 @@ region:                     "us-west-2"
 
 # Application Load Balancer
 # name:                       "team2-lb"
-subnet1:                    "subnet-0495a45032893ce99"
-subnet2:                    "subnet-0fee4b1aaa4f0a6ab"
-subnet3:                    "subnet-056635676475c3106"
 # Protocol:                   "HTTP"
 # Port:                       "80"
 # Type:                       "forward"
