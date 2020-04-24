@@ -8,7 +8,7 @@
     - ec2_group:
         name: "{{ name }}"
         description: sg with rule descriptions
-        vpc_id: "{{ vpc_id }}"
+        vpc_id: "{{ ec2_vpc_net_result.vpc.id }}"
         region: "{{ region }}"
         rules:
           - proto: tcp
