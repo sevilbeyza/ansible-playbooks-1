@@ -9,9 +9,9 @@
         name: team2_asg
         launch_config_name: "{{launch_config_name}}"
         vpc_zone_identifier:
-          - "{{Pub_Subnet1}}"
-          - "{{Pub_Subnet2}}"
-          - "{{Pub_Subnet3}}"
+          - "{{Pub_Subnet1.subnet.id}}"
+          - "{{Pub_Subnet2.subnet.id}}"
+          - "{{Pub_Subnet3.subnet.id}}"
         health_check_period: "{{health_check_period}}"
         health_check_type: ELB
         replace_all_instances: yes
