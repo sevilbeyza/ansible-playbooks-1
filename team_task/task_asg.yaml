@@ -1,6 +1,0 @@
----
-- name: Playbook name
-  hosts: localhost
-  tasks: 
-- import_playbook: deneme.yaml
-- import_playbook: wp.yaml
