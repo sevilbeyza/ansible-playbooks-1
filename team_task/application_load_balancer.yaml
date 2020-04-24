@@ -10,9 +10,9 @@
         security_groups: "{{security_groups}}"
         region: "{{region}}"
         subnets: 
-          - "{{Pub_Subnet1}}"
-          - "{{Pub_Subnet2}}"
-          - "{{Pub_Subnet3}}" 
+          - "{{Pub_Subnet1.subnet.id}}"
+          - "{{Pub_Subnet2.subnet.id}}"
+          - "{{Pub_Subnet3.subnet.id}}" 
         listeners:
         - Protocol: HTTP # Required. The protocol for connections from clients to the load balancer (HTTP or HTTPS) (case-sensitive).
           Port: 80
