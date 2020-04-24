@@ -1,12 +1,22 @@
 ---
-- ec2_asg:
-    name: myasg
-    launch_config_name: launch_asg
-    health_check_period: "{{health_check_period}}"
-    health_check_type: ELB
-    replace_all_instances: yes
-    min_size: "{{min_size}}"
-    max_size: "{{max_size}}"
-    desired_capacity: "{{desired_capacity}}"
-    region: "{{region}}"
-    state: present
+- name: Create Auto Scaling Group
+  hosts: localhost
+  gather_facts: yes
+  vars_files:
+    - vars.yaml
+  tasks:
+    - ec2_asg:
+        name: team2_asg
+        launch_config_name: "{{launch_config_name}}"
+        vpc_zone_identifier:
+          - "{{subnet1}}"
+          - "{{subnet2}}"
+          - "{{subnet3}}"
+        health_check_period: "{{health_check_period}}"
+        health_check_type: ELB
+        replace_all_instances: yes
+        min_size: "{{min_size}}"
+        max_size: "{{max_size}}"
+        desired_capacity: "{{desired_capacity}}"
+        region: "{{region}}"
+        state: present
