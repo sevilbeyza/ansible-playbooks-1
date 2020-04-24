@@ -13,4 +13,4 @@
       tags:
           Class: Ansible
           Task: VPC
-      register: ec2_vpc_net_result
+    register: ec2_vpc_net_result

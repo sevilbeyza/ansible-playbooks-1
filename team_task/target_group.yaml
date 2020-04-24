@@ -11,5 +11,5 @@
       region: "{{region}}"
       protocol: http
       port: 80
-      vpc_id: "{{vpc_id}}"
+      vpc_id: "{{ ec2_vpc_net_result.vpc.id }}"
       state: present

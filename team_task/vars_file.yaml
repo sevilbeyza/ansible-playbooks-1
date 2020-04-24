@@ -1,4 +1,4 @@
-region:                   "us-west-2"
+region:                   "eu-west-3"
 vpc_cidr:                 "10.10.0.0/16"
 vpc_name:                 "Team1-Project"
 #vpc_id:                   "vpc_id"
@@ -20,7 +20,7 @@ name:                        "team2sg"
 
 # Launch Configuraton
 # name:                     "team2-lc"
-image_id:                   "ami-0e8444967cca91ba6"
+image_id:                   "ami-0f8a5a45f8bf248f4"
 key_name:                   "ansible"
 security_groups:            "team2sg"
 instance_type:              "t2.micro"
@@ -42,7 +42,7 @@ TargetGroupName:            "team2targetgroup"
 # Auto Scaling Group
 # name:                      "team2_asg"
 launch_config_name:        "team2-lc"
-health_check_period:       "60"
+health_check_period:       "20"
 min_size:                  "3"
 max_size:                  "48"
 desired_capacity:          "3"
